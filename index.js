@@ -11,9 +11,18 @@ const commands = require('./src/commands');
 const middleware = require('./middleware');
 const chalk = vorpal.chalk;
 
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+    next();
+}
+
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+//app.use(allowCrossDomain); //uncomment to allow cross origin
 middleware.call(app);
 
 swagpi(app, {
