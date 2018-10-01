@@ -1,9 +1,10 @@
-FROM node:8-alpine
+FROM node:8
+ENV NODE_ENV production
 
-ENV ADDICT_VERSION 1.0.4
+ENV ADDICT_VERSION 1.1.1
 
 EXPOSE 3000
 ENTRYPOINT [ "/usr/local/bin/addict" ]
 
-RUN npm install "addict@$ADDICT_VERSION" -g \
-        && npm cache clear --force
+RUN yarn global add "addict@$ADDICT_VERSION" && \
+    yarn cache clean --force
