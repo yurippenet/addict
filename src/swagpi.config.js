@@ -39,7 +39,7 @@ module.exports = {
           description: 'User name.',
           optional: false
         },
-        pass: {
+        password: {
           description: 'Password to log in.',
           optional: false
         },
